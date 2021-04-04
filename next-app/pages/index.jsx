@@ -12,7 +12,7 @@ export const config = {
   unstable_runtimeJS: false,
 };
 
-export default function Home({ recentPosts }) {
+export default function Home({ posts }) {
   return (
     <>
       <Head>
@@ -26,7 +26,7 @@ export default function Home({ recentPosts }) {
 
       <Container tag="main">
         <ul>
-          {recentPosts.map((post) => (
+          {posts.map((post) => (
             <li key={post.slug} className="mb-4 md:mb-2">
               <span className="block text-sm font-light text-gray-500 md:inline-block md:text-base md:text-right md:pr-3 md:w-40">
                 {post.date}
@@ -47,7 +47,7 @@ export default function Home({ recentPosts }) {
 export async function getStaticProps() {
   const blogPosts = await loadBlogPosts();
 
-  const recentPosts = blogPosts.map((post) => {
+  const posts = blogPosts.map((post) => {
     const date = format(parse(post.data.date, "YY-MM-DD"), "MMMM D, YYYY");
     return {
       date,
@@ -57,7 +57,7 @@ export async function getStaticProps() {
   });
 
   const props = {
-    recentPosts,
+    posts,
   };
 
   return {
