@@ -28,6 +28,7 @@ export default function Blog({ post, mdxSource }) {
     <>
       <Head>
         <title>{post.title}</title>
+        <meta name="description" content="Welcome to my blog" />
       </Head>
       <CountAPI identifier={post.slug} countCallback={countCallback} />
 
@@ -43,6 +44,7 @@ export default function Blog({ post, mdxSource }) {
               aria-label="Check me out on twitter"
             >
               <img
+                alt=""
                 className="w-6 h-6 mr-2 rounded-full"
                 src="https://pbs.twimg.com/profile_images/1253463555388530689/TWhkn5IZ_x96.jpg"
               />
