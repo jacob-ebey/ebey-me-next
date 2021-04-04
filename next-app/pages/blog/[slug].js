@@ -8,6 +8,7 @@ import Container from "../../components/container";
 import CountAPI from "../../components/count-api";
 import Header from "../../components/header";
 import components from "../../components/mdx-components";
+import Head from "next/head";
 
 export const config = {
   unstable_runtimeJS: false,
@@ -25,6 +26,9 @@ export default function Blog({ post, mdxSource }) {
 
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
       <CountAPI identifier={post.slug} countCallback={countCallback} />
 
       <Header />

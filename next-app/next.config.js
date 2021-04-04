@@ -12,6 +12,14 @@ module.exports = {
       });
     }
 
+    if (dev) {
+      config.plugins.push(
+        new (require("webpack-watch-files-plugin").default)({
+          files: ["./blog/*.mdx"],
+        })
+      );
+    }
+
     if (!dev && !isServer && process.env.ANALYZE === "true") {
       config.plugins.push(
         new (require("webpack-bundle-analyzer").BundleAnalyzerPlugin)()

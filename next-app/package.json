@@ -28,6 +28,7 @@
     "autoprefixer": "10.2.5",
     "postcss": "8.2.9",
     "tailwindcss": "2.0.4",
-    "webpack-bundle-analyzer": "4.4.0"
+    "webpack-bundle-analyzer": "4.4.0",
+    "webpack-watch-files-plugin": "^1.1.0"
   }
 }
