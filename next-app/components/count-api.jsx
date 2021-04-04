@@ -2,6 +2,8 @@ import Head from "next/head";
 
 const env = process.env.NODE_ENV || "development";
 
+function dCountCallback() {}
+
 /**
  * Track an identifier via countapi.xyz
  * @param {{
@@ -9,16 +11,17 @@ const env = process.env.NODE_ENV || "development";
  *  countCallback?: (result: {status: number; value?: string}) => void
  * }} param0
  */
-export default function CountAPI({ identifier, countCallback }) {
+export default function CountAPI({
+  identifier = "",
+  countCallback = dCountCallback,
+}) {
   return (
     <Head>
-      {!countCallback ? null : (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: countCallback.toString(),
-          }}
-        />
-      )}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: countCallback.toString(),
+        }}
+      />
 
       <script
         async
