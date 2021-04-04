@@ -29,7 +29,7 @@ export default function MdxCode(props) {
   return (
     <Highlight {...defaultProps} theme={prismTheme} code={code} language="jsx">
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div className={cn(className, "overflow-x-auto")} style={style}>
+        <div className={cn(className, "overflow-x-auto mb-4")} style={style}>
           <code>
             {tokens.map((line, i) => (
               <div {...getLineProps({ line, key: i })}>
