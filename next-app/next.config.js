@@ -1,8 +1,24 @@
-module.exports = {
+const path = require("path");
+
+const withTM = require("next-transpile-modules")(
+  ["@ebey-me/react-edge-personalization-next-app/pages/index"],
+  {
+    resolveSymlinks: true,
+  }
+);
+
+module.exports = withTM({
   future: {
     webpack5: true,
   },
   webpack: (config, { dev, isServer }) => {
+    Object.assign(config.resolve.alias, {
+      "@ebey-me/react-edge-personalization-next-app/pages/index": path.resolve(
+        "../",
+        "examples/react-edge-personalization/next-app/pages/index.jsx"
+      ),
+    });
+
     // replace react with preact only in client production builds
     if (!dev && !isServer) {
       Object.assign(config.resolve.alias, {
@@ -28,4 +44,4 @@ module.exports = {
 
     return config;
   },
-};
+});

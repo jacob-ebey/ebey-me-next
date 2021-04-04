@@ -1,8 +1,9 @@
 {
   "private": true,
-  "name": "next-blog",
+  "name": "ebey-me",
   "license": "MIT",
   "workspaces": [
-    "next-app"
+    "next-app",
+    "examples/react-edge-personalization/next-app"
   ]
 }

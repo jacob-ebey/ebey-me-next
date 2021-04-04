@@ -20,7 +20,7 @@ export default function MdxCode(props) {
 
   if (!language) {
     return (
-      <div className="overflow-x-auto mb-4">
+      <div className="mb-4 overflow-x-auto">
         <code {...props} />
       </div>
     );

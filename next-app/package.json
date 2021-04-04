@@ -1,5 +1,6 @@
 {
-  "name": "ebey-me",
+  "private": true,
+  "name": "@ebey-me/next-app",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -12,6 +13,7 @@
     "webpack": "5.30.0"
   },
   "dependencies": {
+    "@ebey-me/react-edge-personalization-next-app": "*",
     "fecha": "4.2.0",
     "gray-matter": "4.0.2",
     "js-yaml": "4.0.0",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@tailwindcss/jit": "0.1.18",
     "autoprefixer": "10.2.5",
+    "next-transpile-modules": "6.4.0",
     "postcss": "8.2.9",
     "tailwindcss": "2.0.4",
     "webpack-bundle-analyzer": "4.4.0",
