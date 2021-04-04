@@ -5,6 +5,7 @@ import { format, parse } from "fecha";
 import { loadBlogPosts } from "../utils/blog";
 
 import Container from "../components/container";
+import CountAPI from "../components/count-api";
 import Header from "../components/header";
 
 export const config = {
@@ -15,10 +16,11 @@ export default function Home({ recentPosts }) {
   return (
     <>
       <Head>
-        <meta name="description" content="Welcome to my blog :D" />
-
-        <script async src="https://api.countapi.xyz/hit/ebey-me" />
+        <title>Jacob Ebey's blog</title>
+        <meta name="description" content="Welcome to my blog" />
       </Head>
+
+      <CountAPI />
 
       <Header />
 
@@ -26,11 +28,11 @@ export default function Home({ recentPosts }) {
         <ul>
           {recentPosts.map((post) => (
             <li key={post.slug} className="mb-4 md:mb-2">
-              <span className="block md:inline-block text-sm font-light text-gray-500 md:text-base md:text-right md:pr-3 md:w-40">
+              <span className="block text-sm font-light text-gray-500 md:inline-block md:text-base md:text-right md:pr-3 md:w-40">
                 {post.date}
               </span>
               <Link href={`/blog/${post.slug}`}>
-                <a className="inline-block font-semibold text-indigo-600 md:p-2 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
+                <a className="inline-block font-semibold text-indigo-600 transition-colors duration-200 ease-in-out md:p-2 hover:bg-gray-200">
                   {post.title}
                 </a>
               </Link>

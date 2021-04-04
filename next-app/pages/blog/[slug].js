@@ -1,4 +1,3 @@
-import Head from "next/head";
 import hydrate from "next-mdx-remote/hydrate";
 import renderToString from "next-mdx-remote/render-to-string";
 import { format, parse } from "fecha";
@@ -6,6 +5,7 @@ import { format, parse } from "fecha";
 import { loadBlogPost, loadBlogPosts } from "../../utils/blog";
 
 import Container from "../../components/container";
+import CountAPI from "../../components/count-api";
 import Header from "../../components/header";
 import components from "../../components/mdx-components";
 
@@ -25,41 +25,27 @@ export default function Blog({ post, mdxSource }) {
 
   return (
     <>
-      <Head>
-        <title>{post.title}</title>
-        <meta name="description" content={post.title} />
-
-        <script
-          dangerouslySetInnerHTML={{
-            __html: countCallback.toString(),
-          }}
-        />
-
-        <script
-          async
-          src={`https://api.countapi.xyz/hit/ebey-me/${post.slug}?callback=${countCallback.name}`}
-        />
-      </Head>
+      <CountAPI identifier={post.slug} countCallback={countCallback} />
 
       <Header />
 
       <Container tag="article">
         <main>
-          <h1 className="font-semibold text-3xl mb-1">{post.title}</h1>
-          <nav className="flex flex-wrap items-center text-sm text-gray-700 mb-6">
+          <h1 className="mb-1 text-3xl font-semibold">{post.title}</h1>
+          <nav className="flex flex-wrap items-center mb-6 text-sm text-gray-700">
             <a
               className="inline-flex items-center"
               href="https://twitter.com/ebey_jacob"
               aria-label="Check me out on twitter"
             >
               <img
-                className="mr-2 w-6 h-6 rounded-full"
+                className="w-6 h-6 mr-2 rounded-full"
                 src="https://pbs.twimg.com/profile_images/1253463555388530689/TWhkn5IZ_x96.jpg"
               />
               <span>ebey_jacob</span>
             </a>
-            <span className="text-lg mx-4 text-gray-400 font-thin">/</span>
-            <span className="mr-2 flex-grow hidden md:inline">{post.date}</span>
+            <span className="mx-4 text-lg font-thin text-gray-400">/</span>
+            <span className="flex-grow hidden mr-2 md:inline">{post.date}</span>
             <span id="view-count"></span>
           </nav>
         </main>
