@@ -8,7 +8,7 @@ export default function Header() {
           <svg className="inline-block h-5 w-5 bg-black mr-3">
             <path d="M0 0h19v19H0z" />
           </svg>
-          <span className="text-lg font-semibold">jacob.me</span>
+          <span className="text-lg font-semibold">ebey.me</span>
         </a>
       </Link>
 
