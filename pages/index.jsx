@@ -17,7 +17,7 @@ export default function Home({ recentPosts }) {
       <Head>
         <meta name="description" content="Welcome to my blog :D" />
 
-        <script async src={`https://api.countapi.xyz/hit/ebey-me`} />
+        <script async src="https://api.countapi.xyz/hit/ebey-me" />
       </Head>
 
       <Header />
