@@ -1,0 +1,55 @@
+---
+slug: preact-for-next
+title: Preact for Next
+date: 2021-04-03
+---
+
+I ran across [@\_developit](https://twitter.com/_developit)'s
+[nextjs-preact-demo](https://github.com/developit/nextjs-preact-demo)
+a while ago, and being a fan of [Preact](https://github.com/preactjs/preact)
+and reducing the javascript we ship to production in general, I was super excited
+to see that it didn't take much to get up and running with Preact in [Next.js](https://nextjs.org/).
+I gave it a go and was overall happy with the final result.
+
+Revisiting this recently with the release of Next.js 10 the approach taken seems
+to need some updating. Don't fear, we have a simpler way to utlize Preact in
+production while retaining the amazing dev experience Next.js provides out of the box.
+
+The previous approach in [nextjs-preact-demo](https://github.com/developit/nextjs-preact-demo)
+attempts to replace React throughout the whole stack, server and client, development and production.
+In this guide we will be replacing React with Preact in producton builds only on the client.
+This keeps us away from react-ssr-prepass and server side rendering internals of Next.js, replacing
+only the part that affects the end user.
+
+Since Next.js provides us an easy way to customize the webpack config that is used, to accomplish
+this all we have to do is use webpack's [`resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias)
+configuration to swap React with Preact.
+
+Start by installing preact:
+
+```
+yarn add preact
+```
+
+Then modify or create a next.config.js file that mimics:
+
+```js
+module.exports = {
+  webpack: (config, { dev, isServer }) => {
+    // replace react with preact only in client production builds
+    if (!dev && !isServer) {
+      Object.assign(config.resolve.alias, {
+        react: "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat",
+      });
+    }
+
+    return config;
+  },
+};
+```
+
+That's all there is to it. You will want to keep an eye on production builds to make sure
+you are not utilizing any unsupported React features. These are documented at
+https://preactjs.com/guide/v10/differences-to-react.
