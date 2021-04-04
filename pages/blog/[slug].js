@@ -37,7 +37,7 @@ export default function Blog({ post, mdxSource }) {
 
         <script
           async
-          src={`https://api.countapi.xyz/hit/jacob-me/${post.slug}?callback=${countCallback.name}`}
+          src={`https://api.countapi.xyz/hit/ebey-me/${post.slug}?callback=${countCallback.name}`}
         />
       </Head>
 
