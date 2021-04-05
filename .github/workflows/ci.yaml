@@ -20,11 +20,10 @@ jobs:
       - name: Federated Container Action
         id: container
         uses: jacob-ebey/federated-container-action@0.0.0-beta.1
-        working-directory: ${{ env.working-directory }}
         with:
-          config: "webpack.config.js"
-          exposes: "exposes.js"
-          shared: "shared.js"
+          config: "${{ env.working-directory }}/webpack.config.js"
+          exposes: "${{ env.working-directory }}/exposes.js"
+          shared: "${{ env.working-directory }}/shared.js"
 
       - run: ls -lh ${{ steps.container.outputs.path0 }}
       - run: ls -lh ${{ steps.container.outputs.path1 }}
