@@ -6,4 +6,5 @@ zone_id = ""
 workers_dev = true
 webpack_config = "webpack.config.js"
 
-vars = { ORIGIN_URL = "https://www.ebey.me" }
+# TODO: Update to production URL before merge
+vars = { ORIGIN_URL = "https://ebey-me-git-react-edge-personalization-jacob-ebey.vercel.app/" }

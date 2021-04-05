@@ -18,23 +18,23 @@ export default function Home() {
         <div className="flex justify-center px-6 my-12">
           <div className="flex w-full xl:w-3/4 lg:w-11/12">
             <div className="hidden w-full h-full lg:block lg:w-1/2">
-              <PersonalizableContent name="login-aside">
-                <div
-                  className="w-full h-full bg-gray-400 bg-cover rounded-l-lg"
-                  style={{
-                    backgroundImage:
-                      "url('https://source.unsplash.com/oWTW-jNGl9I/600x800')",
-                  }}
-                />
-              </PersonalizableContent>
+              <div
+                className="w-full h-full bg-gray-400 bg-cover rounded-l-lg"
+                style={{
+                  backgroundImage:
+                    "url('https://source.unsplash.com/oWTW-jNGl9I/600x800')",
+                }}
+              />
             </div>
             <div className="w-full p-5 bg-white rounded-lg lg:w-1/2 lg:rounded-l-none">
               <div className="px-8 mb-4 text-center">
                 <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
-                <p className="mb-4 text-sm text-gray-700">
-                  We get it, stuff happens. Just enter your email address below
-                  and we'll send you a link to reset your password!
-                </p>
+                <PersonalizableContent name="login-message">
+                  <p className="mb-4 text-sm text-gray-700">
+                    We get it, stuff happens. Just enter your email address
+                    below and we'll send you a link to reset your password!
+                  </p>
+                </PersonalizableContent>
               </div>
               <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                 <div className="mb-4">

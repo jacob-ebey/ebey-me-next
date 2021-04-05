@@ -36,8 +36,8 @@ Today I'm introducing a pattern I have yet to name, but it goes like this:
 Today we will cover a basic implementation of SSR / SSG step 1 along with a basic Edge Worker and Client
 Runtime. As a bonus, the content modifications will consist of replacement with a webpack federated module.
 
-We are going to personnalize this simple login page image on desktop by replacing it with a webpack federated
-react component.
+We are going to personnalize this simple login page message by replacing it with a react component
+loaded via webpack federation.
 
 <PreviewWindow title="un-personalized">
   <iframe
@@ -56,7 +56,7 @@ In the end we should end up with something that looks like this:
 </PreviewWindow>
 
 Now this might not seem too impressive just rendering a button, but this
-button was not known about by the origin application. There also is zero
+button was not known about by the origin application. There is also zero
 FOOC because the edge worker is actually doing the personalization. Even
 better, the button has a client runtime and shares runntime dependencies
 like react with the host application!

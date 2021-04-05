@@ -1,5 +1,5 @@
 const PERSONALIZATIONS = {
-  "login-aside": {
+  "login-message": {
     remoteComponent: {
       remote: {
         name: "test",
