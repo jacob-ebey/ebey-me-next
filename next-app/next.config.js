@@ -7,9 +7,27 @@ const withTM = require("next-transpile-modules")(
   }
 );
 
+const edgePersonalizationWorkerUrl = process.env.VERCEL_URL
+  ? "https://react-edge-personalization.jacob-ebey.workers.dev"
+  : "http://localhost:4000";
+
 module.exports = withTM({
   future: {
     webpack5: true,
+  },
+  env: {
+    BASE_URL: process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000",
+  },
+  redirects() {
+    return [
+      {
+        source: "/example/react-edge-personalization-edge",
+        destination: `${edgePersonalizationWorkerUrl}/example/react-edge-personalization`,
+        permanent: true,
+      },
+    ];
   },
   webpack: (config, { dev, isServer }) => {
     Object.assign(config.resolve.alias, {

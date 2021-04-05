@@ -4,6 +4,7 @@
   "license": "MIT",
   "workspaces": [
     "next-app",
-    "examples/react-edge-personalization/next-app"
+    "examples/react-edge-personalization/next-app",
+    "examples/react-edge-personalization/worker"
   ]
 }

@@ -12,29 +12,51 @@ Today I'm introducing a pattern I have yet to name, but it goes like this:
 
 **SSR / SSG**
 
-- We tag the personalizable content but don't apply any modifications
-- If the tagged content is statically recognizable as a class or functional React component leaf node,
-  it is included in the edge-render endpoint
+1. We tag the personalizable content but don't apply any modifications
+2. If the tagged content is statically recognizable as a class or functional React component leaf node,
+   it is included in the edge-render endpoint
 
 **Edge Worker:**
 
-- Retrieve the SSR'd or static origin HTML that's meant for everyone without personalization (cache this)
-- Parse the HTML for arias tagged personalizable and read the mbox name and any metadata
-- Use mbox names and metadata to retrieve personalizable content / modifications
-- Apply modifications to HTML / mbox metadata (use edge-render endpoint, store prop modifications)
-- Serve to client
+1. Retrieve the SSR'd or static origin HTML that's meant for everyone without personalization (cache this)
+2. Parse the HTML for arias tagged personalizable and read the mbox name and any metadata
+3. Use mbox names and metadata to retrieve personalizable content / modifications
+4. Apply modifications to HTML / mbox metadata (use edge-render endpoint, store prop modifications)
+5. Serve to client
 
 **Client Runtime**
 
-- Hault react hydration at arias tagged personalizagle
-- Continue to render static HTML with modifications from edge worker
-- Resolve any new runtime JS needed (federated / lazy components, etc...)
-- Apply property modifications
-- Continue hydration with modifications applied to match modifications from edge worker
-- Enjoy Zero FOOC (Flash of Original Content) Personalization!
+1. Hault react hydration at arias tagged personalizagle
+2. Continue to render static HTML with modifications from edge worker
+3. Resolve any new runtime JS needed (federated / lazy components, etc...)
+4. Apply property modifications
+5. Continue hydration with modifications applied to match modifications from edge worker
+6. Enjoy Zero FOOC (Flash of Original Content) Personalization!
 
-<PreviewWindow>
-  <ReactEdgePersonalizationNextAppPagesIndex />
+Today we will cover a basic implementation of SSR / SSG step 1 along with a basic Edge Worker and Client
+Runtime. As a bonus, the content modifications will consist of replacement with a webpack federated module.
+
+We are going to personnalize this simple login page image on desktop by replacing it with a webpack federated
+react component.
+
+<PreviewWindow title="un-personalized">
+  <iframe
+    style={{ height: "100%", width: "100%" }}
+    src="/example/react-edge-personalization"
+  />
 </PreviewWindow>
 
-more stuff here
+In the end we should end up with something that looks like this:
+
+<PreviewWindow title="personalized">
+  <iframe
+    style={{ height: "100%", width: "100%" }}
+    src="/example/react-edge-personalization-edge"
+  />
+</PreviewWindow>
+
+Now this might not seem too impressive just rendering a button, but this
+button was not known about by the origin application. There also is zero
+FOOC because the edge worker is actually doing the personalization. Even
+better, the button has a client runtime and shares runntime dependencies
+like react with the host application!
