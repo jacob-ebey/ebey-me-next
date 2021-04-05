@@ -11,6 +11,7 @@ export default function useRemoteComponent(remote, component, onFailed) {
       const link = document.querySelector(
         `link[personalizable-preload='${remote}']`
       );
+
       if (!link) {
         resolve();
         return;
@@ -54,10 +55,12 @@ export default function useRemoteComponent(remote, component, onFailed) {
     });
   }
 
+  const remotePromise = remotes[remote];
+
   useEffect(() => {
     let canceled = false;
-    remotes[remote] &&
-      remotes[remote].then(() => {
+    remotePromise &&
+      remotePromise.then(() => {
         const get = window[remote]?.get;
         if (get) {
           get(component)
@@ -67,14 +70,18 @@ export default function useRemoteComponent(remote, component, onFailed) {
                 setResult(() => mod?.default || mod);
               }
             })
-            .catch(() => onFailed());
+            .catch(() => {
+              if (!canceled) {
+                onFailed();
+              }
+            });
         }
       });
 
     return () => {
       canceled = true;
     };
-  }, [remote, component]);
+  }, [remote, component, remotePromise]);
 
   return result;
 }

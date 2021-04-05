@@ -23,7 +23,7 @@ module.exports = withTM({
   redirects() {
     return [
       {
-        source: "/example/react-edge-personalization-edge",
+        source: "/example/react-edge-personalization-worker",
         destination: `${edgePersonalizationWorkerUrl}/example/react-edge-personalization`,
         permanent: true,
       },

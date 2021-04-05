@@ -51,12 +51,22 @@ In the end we should end up with something that looks like this:
 <PreviewWindow title="personalized">
   <iframe
     style={{ height: "100%", width: "100%" }}
-    src="/example/react-edge-personalization-edge"
+    src="/example/react-edge-personalization-worker"
   />
 </PreviewWindow>
 
 Now this might not seem too impressive just rendering a button, but this
 button was not known about by the origin application. There is also zero
-FOOC because the edge worker is actually doing the personalization. Even
-better, the button has a client runtime and shares runntime dependencies
-like react with the host application!
+FOOC because the edge worker is actually doing the personalization. The
+button also has a client runtime that shares dependencies like react with
+the host application thanks to module federation, and thanks to the stats
+information avaliable through webpack we are even pre-loading the styles
+and javascript chunks for that button.
+
+So how do we accomplish this magic? Let's start with our federated remote
+that we will be loading components from. If you are not familiar with
+[Webpack Module Federation](https://webpack.js.org/concepts/module-federation/)
+there are many good resources out there to wrap your head around it, but at
+a very high level it gives you a way to include code from one webpack bundle
+into another at runtime and share dependencies like React, avoiding duplicates
+while ensuring runtime compatibility through semver.
