@@ -5665,6 +5665,11 @@ webpack-cli@4.6.0:
     v8-compile-cache "^2.2.0"
     webpack-merge "^5.7.3"
 
+webpack-federated-stats-plugin@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/webpack-federated-stats-plugin/-/webpack-federated-stats-plugin-2.0.5.tgz#ea184231f2cc380082af54fef5d1a9b05255b002"
+  integrity sha512-Ji+RVg3+0joPAXqqv8F9wD4lyq8ibxqYu3vzp8gaBOy7jdHcnn8egZ0KV08S5KbBlxP1n7jzq0kSN+M5uMaWyA==
+
 webpack-merge@^5.7.3:
   version "5.7.3"
   resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-5.7.3.tgz#2a0754e1877a25a8bbab3d2475ca70a052708213"
