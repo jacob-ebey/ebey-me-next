@@ -1,8 +1,5 @@
-name: "examples/react-edge-personalization"
-on:
-  push:
-    branches:
-      - main
+name: react-edge-personalization
+on: [push]
 
 jobs:
   test:
