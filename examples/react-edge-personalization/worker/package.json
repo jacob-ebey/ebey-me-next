@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "worker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=production webpack",
+    "start": "cloudworker ./index.js -p 4000",
+    "dev": "NODE_ENV=development webpack && run-p dev:*",
+    "dev:build": "ORIGIN_URL='http://localhost:3000' NODE_ENV=development webpack --watch",
+    "dev:watch": "nodemon --watch ./dist/worker.js --signal SIGINT --exec 'cloudworker ./dist/worker.js -p 4000'"
+  },
+  "devDependencies": {
+    "@dollarshaveclub/cloudworker": "0.1.2",
+    "nodemon": "2.0.7",
+    "npm-run-all": "4.1.5",
+    "webpack": "5.30.0",
+    "webpack-cli": "4.6.0"
+  }
+}

@@ -27,9 +27,7 @@ export default function CountAPI({
         async
         src={`https://api.countapi.xyz/hit/ebey-me${
           env === "production" ? "" : `-${env}`
-        }/${identifier}${
-          countCallback ? `?callback=${countCallback.name}` : ""
-        }`}
+        }/${identifier}?callback=${countCallback.name}`}
       />
     </Head>
   );

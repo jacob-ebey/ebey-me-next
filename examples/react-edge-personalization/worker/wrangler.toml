@@ -1,0 +1,10 @@
+name = "react-edge-personalization"
+type = "webpack"
+account_id = "574fdb1eae7e80782a805c4b92f6b626"
+route = ""
+zone_id = ""
+workers_dev = true
+webpack_config = "webpack.config.js"
+
+# TODO: Update to production URL before merge
+vars = { ORIGIN_URL = "https://ebey-me-git-react-edge-personalization-jacob-ebey.vercel.app/" }

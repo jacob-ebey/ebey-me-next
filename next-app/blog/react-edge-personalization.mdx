@@ -1,0 +1,72 @@
+---
+slug: react-edge-personalization
+title: React Edge Personalization
+date: 2021-04-04
+---
+
+Personalization at the edge has historically been a pretty tricky task involving
+hacking around your 3rd parties API to hook into the react lifecycle, catching re-renders
+and re-apply the personalization.
+
+Today I'm introducing a pattern I have yet to name, but it goes like this:
+
+**SSR / SSG**
+
+1. We tag the personalizable content but don't apply any modifications
+2. If the tagged content is statically recognizable as a class or functional React component leaf node,
+   it is included in the edge-render endpoint
+
+**Edge Worker:**
+
+1. Retrieve the SSR'd or static origin HTML that's meant for everyone without personalization (cache this)
+2. Parse the HTML for arias tagged personalizable and read the mbox name and any metadata
+3. Use mbox names and metadata to retrieve personalizable content / modifications
+4. Apply modifications to HTML / mbox metadata (use edge-render endpoint, store prop modifications)
+5. Serve to client
+
+**Client Runtime**
+
+1. Hault react hydration at arias tagged personalizagle
+2. Continue to render static HTML with modifications from edge worker
+3. Resolve any new runtime JS needed (federated / lazy components, etc...)
+4. Apply property modifications
+5. Continue hydration with modifications applied to match modifications from edge worker
+6. Enjoy Zero FOOC (Flash of Original Content) Personalization!
+
+Today we will cover a basic implementation of SSR / SSG step 1 along with a basic Edge Worker and Client
+Runtime. As a bonus, the content modifications will consist of replacement with a webpack federated module.
+
+We are going to personnalize this simple login page message by replacing it with a react component
+loaded via webpack federation.
+
+<PreviewWindow title="un-personalized">
+  <iframe
+    style={{ height: "100%", width: "100%" }}
+    src="/example/react-edge-personalization"
+  />
+</PreviewWindow>
+
+In the end we should end up with something that looks like this:
+
+<PreviewWindow title="personalized">
+  <iframe
+    style={{ height: "100%", width: "100%" }}
+    src="/example/react-edge-personalization-worker"
+  />
+</PreviewWindow>
+
+Now this might not seem too impressive just rendering a button, but this
+button was not known about by the origin application. There is also zero
+FOOC because the edge worker is actually doing the personalization. The
+button also has a client runtime that shares dependencies like react with
+the host application thanks to module federation, and thanks to the stats
+information avaliable through webpack we are even pre-loading the styles
+and javascript chunks for that button.
+
+So how do we accomplish this magic? Let's start with our federated remote
+that we will be loading components from. If you are not familiar with
+[Webpack Module Federation](https://webpack.js.org/concepts/module-federation/)
+there are many good resources out there to wrap your head around it, but at
+a very high level it gives you a way to include code from one webpack bundle
+into another at runtime and share dependencies like React, avoiding duplicates
+while ensuring runtime compatibility through semver.
