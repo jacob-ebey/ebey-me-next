@@ -1,7 +1,7 @@
 ---
 slug: webpack-federation-ssr
 title: Webpack Federation SSR
-date: 2021-06-2
+date: 2021-06-02
 ---
 
 Webpack Module Federation has been a game changer in the micro-frontend space allowing multiple SPA's to operate as one cohecive bundle. This has also enabled separately bundled and deployed SSR'd applications to make client side transitioning between them just as seamless as if they were bundled and deployed together.
