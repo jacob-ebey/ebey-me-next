@@ -39,7 +39,7 @@ export function loadBlogPosts() {
 
       const promises = [];
       for (const fileName of fileNames) {
-        if (!fileName.endsWith(".mdx")) {
+        if (!fileName.endsWith(".mdx") && !fileName.endsWith(".md")) {
           continue;
         }
 
