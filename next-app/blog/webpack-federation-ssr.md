@@ -1,3 +1,9 @@
+---
+slug: webpack-federation-ssr
+title: Webpack Federation SSR
+date: 2021-06-2
+---
+
 Webpack Module Federation has been a game changer in the micro-frontend space allowing multiple SPA's to operate as one cohecive bundle. This has also enabled separately bundled and deployed SSR'd applications to make client side transitioning between them just as seamless as if they were bundled and deployed together.
 
 The missing piece comes when you want to SSR and share at a more granular level than the "page". There are two solutions to this problem, code streaming, and pre-render services. Code streaming has been gaining attention but I would like to focus on how we can solve this with an auto generated prerender service using webpack.
